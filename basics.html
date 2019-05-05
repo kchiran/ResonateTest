@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Basics</title>
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="js/myscript.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+</head>
+
+<body>
+  <a href="javascript:;" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+
+  <div class="topnav">
+    <a href="index.html">Home</a>
+    <a class="active" href="basics.html">Basics</a>
+    <a href="level100.html">Level 100</a>
+    <a href="level200.html">Level 200</a>
+    <a href="rwp.html">Real World Problem</a>
+  </div>
+
+  <div style="padding:16px">
+    <h2>Answers to the Basics</h2>
+    <div>
+      <h4 style="color:orange;">Question 1:</h4>
+      <p>How important is logging in an application?</p>
+      <h4 style="color:green;">Answer:</h4>
+      <p>Logging in any application is very important, you can log a lot of critical things and gain unprecedented insight into how your application is working and performing.</p>
+    </div></br>
+    <div>
+      <h4 style="color:orange;">Question 2:</h4>
+      <p>When do you think use of global variables is appropriate?</p>
+      <h4 style="color:green;">Answer:</h4>
+      <p>When the scope of the variable is really small, and only use if it is really needed.</p>
+    </div></br>
+    <div>
+      <h4 style="color:orange;">Question 3:</h4>
+      <p>Name 3 DO’s and 3 DON’Ts around Exception Handling.</p>
+      <h4 style="color:green;">Answer:</h4>
+      <p>
+        <table style="width:50%">
+          <tr>
+            <th>DO's</th>
+            <th>DON'Ts</th>
+          </tr>
+          <tr>
+            <td>Do use try/finally blocks around code that can potentially generate an exception and centralize your catch statements in one location.</td>
+            <td>Don’t throw an exception when a simple if-else statement can be used to check for errors.</td>
+          </tr>
+          <tr>
+            <td>Do use the predefined exceptions types for common cases and define your own custom exception types only for programmatic scenarios.</td>
+            <td>Don’t throw Exception(). It is too broad class and catching it could mean swallowing other exceptions. Instead create your own custom exceptions and derive from Exception class.</td>
+          </tr>
+          <tr>
+            <td>Do clean up intermediate results and resources when throwing an exception. Callers should be able to assume that there are no side effects when an exception is thrown from a method.</td>
+            <td>Don’t swallow an exception by putting an empty catch block.</td>
+          </tr>
+        </table>
+      </p>
+    </div>
+  </div>
+
+</body>
+
+</html>

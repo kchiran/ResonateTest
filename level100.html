@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Level 100</title>
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="js/myscript.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+</head>
+
+<body>
+  <a href="javascript:;" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+
+  <div class="topnav">
+    <a href="index.html">Home</a>
+    <a href="basics.html">Basics</a>
+    <a class="active" href="level100.html">Level 100</a>
+    <a href="level200.html">Level 200</a>
+    <a href="rwp.html">Real World Problem</a>
+  </div>
+
+  <div style="padding:16px">
+    <h2>Solution for Level 100</h2>
+    <div>
+      <ol>
+        <li>Remove duplicates from an unsorted list (12,11,12,21,41,43,21).</li>
+        <ol type="a">
+          <li>Write the method, make it as efficient as possible</li>
+          <li>Provide the Time Complexity</li>
+        </ol>
+      </ol>
+      <p></p>
+      <pre>
+  <code>
+    import java.util.HashMap;
+
+    public class RemoveDuplicates {
+
+      public Node removeDup(Node head) {
+        HashMap < Integer, Integer > ht = new HashMap < > ();
+        if (head == null) {
+          return null;
+        }
+        Node currNode = head.next;
+        Node prevNode = head;
+        Node temp; //keeping it so that last node would be eligible for garbage collection
+        ht.put(head.data, 1);
+        while (currNode != null) {
+          int data = currNode.data;
+          if (ht.containsKey(data)) {
+            prevNode.next = currNode.next;
+            temp = currNode;
+            currNode = currNode.next;
+            temp.next = null;
+          } else {
+            ht.put(data, 1);
+            prevNode = currNode;
+            currNode = currNode.next;
+          }
+        }
+        return head;
+      }
+      public void display(Node head) {
+        Node n = head;
+        while (n != null) {
+          System.out.print("->" + n.data);
+          n = n.next;
+        }
+      }
+      public static void main(String args[]) {
+        Node n = new Node(12);
+        n.next = new Node(11);
+        n.next.next = new Node(12);
+        n.next.next.next = new Node(21);
+        n.next.next.next.next = new Node(41);
+        n.next.next.next.next.next = new Node(43);
+        n.next.next.next.next.next.next = new Node(21);
+        System.out.print("Original List : ");
+        RemoveDuplicates rm = new RemoveDuplicates();
+        rm.display(n);
+        System.out.print("\n Updated List: ");
+        Node x = rm.removeDup(n);
+        rm.display(x);
+      }
+    }
+    class Node {
+      int data;
+      Node next;
+      public Node(int data) {
+        this.data = data;
+        next = null;
+      }
+    }
+
+</code>
+</pre>
+      <b>Time Complexity</b>: O(n^2)
+    </div>
+    <div>
+      <ol type="1" start="2">
+        <li>Accept two strings and return true if one string is a permutation of the other.</li>
+        <ol type="a">
+          <li>Write the method, make it as efficient as possible</li>
+          <li>Provide the Time Complexity</li>
+        </ol>
+      </ol>
+      <pre>
+  <code>
+    import java.util.*;
+    import java.util.Scanner;
+
+    public class CheckPermutation {
+
+      static boolean arePermutation(String str1, String str2) {
+        // Get lenghts of both strings
+        int l1 = str1.length();
+        int l2 = str2.length();
+
+        // If length of both strings is not same,
+        // then they cannot be Permutation
+        if (l1 != l2)
+          return false;
+        char ch1[] = str1.toCharArray();
+        char ch2[] = str2.toCharArray();
+
+        // Sort both strings
+        Arrays.sort(ch1);
+        Arrays.sort(ch2);
+
+        // Compare sorted strings
+        for (int i = 0; i < l1; i++)
+          if (ch1[i] != ch2[i])
+            return false;
+
+        return true;
+      }
+
+      public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter String 1: ");
+        String str1 = in .nextLine();
+        System.out.println("Enter String 2: ");
+        String str2 = in .nextLine();
+        if (arePermutation(str1, str2))
+          System.out.println("Are Permutation: Yes");
+        else
+          System.out.println("Are Permutation: No");
+
+      }
+    }
+
+</code>
+</pre>
+<b>Time Complexity</b>:
+<p>Time complexity of this method depends upon the sorting technique used.</br>
+In the above implementation, quickSort is used which may be O(n^2) in worst case.</br>
+If we use a O(nLogn) sorting algorithm like merge sort, then the complexity becomes O(nLogn)</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
