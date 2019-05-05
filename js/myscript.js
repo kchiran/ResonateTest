@@ -24,28 +24,42 @@ function generateShortCode(storeId, transactionId) {
     // Logic goes here
     var date = new Date().getTime();
     var uuid = 'x'.replace(/[xy]/g, function(c) {
-        var r = (date + Math.random()*16)%16 | 0;
-        console.log("R"+r);
-        console.log("Below is math random")
-        console.log((Math.random()*16)%16 | 0);
-        date = Math.floor(date/16);
-        console.log(date);
-      return r+date;
-      //  return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+
+
+      var appendedID =  "" +storeId.toString().length+ transactionId.toString().length+storeId + transactionId;
+
+      var sar = ["0","00","000","0000","00000","000000","0000000"];
+      var das = [1,10,100,1000,10000,100000,1000000];
+
+      var l = (9-appendedID.length) - 2;
+      var docketNumber = 0
+      if(appendedID.length = 9) {
+        docketNumber = appendedID
+      }
+      if (appendedID.length <9 ) {
+        var randomnumber = Math.floor(Math.random() * ((9-appendedID.length) - das[l+1] + 1)) + das[l+1];
+        docketNumber =  "" +appendedID  +(9-appendedID.length) + randomnumber;
+      }
+
+      //return docketNumber;
+        return (c=='x' ? docketNumber :0000000);
     });
     return uuid;
 }
-console.log(generateShortCode());
+//console.log(generateShortCode());
 
 // TODO: Modify this function
 function decodeShortCode(shortCode) {
     // Logic goes here
+var sLen = shortCode.substring(0,1);
+var tLen = shortCode.substring(1,2);
+var iLen = sLen + tLen
+return {
+    storeId: parseInt(shortCode.substring(iLen.length, parseInt(sLen,10) + iLen.length),10), // store id goes here,
+    shopDate: new Date(), // the date the customer shopped,
+    transactionId:parseInt(shortCode.substring(parseInt(sLen,10) + iLen.length, iLen.length +  parseInt(sLen,10) + parseInt(tLen,10)),10) // transaction id goes here
+};
 
-    return {
-        storeId: 0, // store id goes here,
-        shopDate: new Date(), // the date the customer shopped,
-        transactionId: 0, // transaction id goes here
-    };
 }
 
 // ------------------------------------------------------------------------------//
@@ -53,8 +67,8 @@ function decodeShortCode(shortCode) {
 // ------------------------------------------------------------------------------//
 function RunTests() {
 
-    var storeIds = [175, 42]//, 0, 9
-    var transactionIds = [9675, 23]//, 123, 7
+    var storeIds = [175,42,0,9]
+    var transactionIds = [9675,23,123,7]
 
     storeIds.forEach(function (storeId) {
         transactionIds.forEach(function (transactionId) {
