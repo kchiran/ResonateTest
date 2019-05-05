@@ -1,7 +1,7 @@
 // TODO: Modify this function
 function generateShortCode(storeId, transactionId) {
     // Logic goes here
-    return document.getElementById("code").value;
+    return document.getElementById("shortCode").value;
 }
 
 // TODO: Modify this function
@@ -46,6 +46,11 @@ function IsToday(inputDate) {
 
 function AddTestResult(testName, testResult) {
     var div = $("#test-results").append("<div class='" + (testResult ? "pass" : "fail") + "'><span class='tname'>- " + testName + "</span><span class='tresult'>" + testResult + "</span></div>");
+}
+
+function clearDIV()
+{
+    document.getElementById("test-results").innerHTML = "";
 }
 
 // ===== Scroll to Top ====
