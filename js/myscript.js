@@ -1,8 +1,41 @@
+function random_storeId(storeIds)
+{
+return storeIds[Math.floor(Math.random()*storeIds.length)];
+}
+function random_transactionId(transactionIds)
+{
+return transactionIds[Math.floor(Math.random()*transactionIds.length)];
+}
+var storeIds = [175, 42, 0, 9];
+var transactionIds = [9675, 23, 123, 7];
+//console.log(random_storeId(storeIds));
+//console.log(random_transactionId(transactionIds));
+
+// int combine(int a, int b) {
+//    int times = 1;
+//    while (times <= b)
+//       times *= 10;
+//    return a*times + b;
+// }
+// console.log(combine(123, 145));
+
 // TODO: Modify this function
 function generateShortCode(storeId, transactionId) {
     // Logic goes here
-    return document.getElementById("shortCode").value;
+    var date = new Date().getTime();
+    var uuid = 'x'.replace(/[xy]/g, function(c) {
+        var r = (date + Math.random()*16)%16 | 0;
+        console.log("R"+r);
+        console.log("Below is math random")
+        console.log((Math.random()*16)%16 | 0);
+        date = Math.floor(date/16);
+        console.log(date);
+      return r+date;
+      //  return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+    });
+    return uuid;
 }
+console.log(generateShortCode());
 
 // TODO: Modify this function
 function decodeShortCode(shortCode) {
@@ -20,8 +53,8 @@ function decodeShortCode(shortCode) {
 // ------------------------------------------------------------------------------//
 function RunTests() {
 
-    var storeIds = [175, 42, 0, 9]
-    var transactionIds = [9675, 23, 123, 7]
+    var storeIds = [175, 42]//, 0, 9
+    var transactionIds = [9675, 23]//, 123, 7
 
     storeIds.forEach(function (storeId) {
         transactionIds.forEach(function (transactionId) {
